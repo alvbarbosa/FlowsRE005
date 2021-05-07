@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  re005:
+    image: ${DOCKER_REGISTRY-}re005
+    build:
+      context: .
+      dockerfile: RE005/Dockerfile
+    depends_on:
+      - apisteps
+    environment:
+        SERVICE_STEPS: "http://apisteps/steps/"
+  apisteps:
+    image: ${DOCKER_REGISTRY-}apisteps
+    build:
+      context: .
+      dockerfile: ApiSteps/Dockerfile
